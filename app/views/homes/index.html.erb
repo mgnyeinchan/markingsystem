@@ -1,2 +1,308 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		
+	
+	</style>
+</head>
+<body>
+	<% if flash[:donotmatch] %>
+		<div class="alert alert-info"><%=  flash[:donotmatch] %></div>
+		<% end %>
+<% if session[:user] %>
+		<% @teams.each do |team| %>
+			<div style="margin: 2%; background-color: white;" id="<%=team.id %>" class="teammembersbox">
+				<h4 style="padding: 1%;"><%= image_tag("#{team.logo}.JPG",style:"width:70px;") %><%= team.name %></h4>
+				<table class="table table-striped table-collapse" style="background-color: #f2f2f2;">
+					<tr>
+						<th style="background-color:#EEE;color:black;">No</th>
+						<th style="background-color:#EEE;color:black;">Role No</th>
+						<th style="background-color:#EEE;color:black;">Student Name</th>
+						<th style="background-color:#EEE;color:black;">Presentation Skill</th>
+						<th style="background-color:#EEE;color:black;">Team Work</th>
+						<th style="background-color:#EEE;color:black;">Technical Skill</th>
+						<th style="background-color:#EEE;color:black;">Documentation</th>
+						<th style="background-color:#EEE;color:black;">Innovation</th>
+						<th style="background-color:#EEE;color:black;">Efforts</th>
+						<th style="background-color:#EEE;color:black;">English Proficiency</th>
+						<th style="background-color:#EEE;color:black;">Total</th>
+						<% if session[:user]["role"] == "2".to_i %>
+						<th style="background-color:#EEE;color:black;">#</th>
+						<% end %>
+					</tr>
+				<% no = 0 %>
+				<% teamhasstudent = Teamhasstudent.where(:team_id => team.id) %>
+				<% teamhasstudent.each do |ths| %>
+					<% no += 1 %>
+					<%= form_tag("/individualevaluation/#{ths.student.id}/#{team.id}", method: "post") do %>
+					<tr>
+					<td style="background-color: white;color:black;"><%= no %></td>
+					<td style="background-color: white;color:black;"><%= ths.student.roleno %></td>
+					<td style="background-color: white;color:black;"><%= ths.student.name %></td>
+					<td style="background-color: white;color:black;">
+						<% if ths.student.pskill == 0 or ths.student.pskill.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= ths.student.pskill %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="pskill" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if ths.student.teamwork == 0 or ths.student.teamwork.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= ths.student.teamwork %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="teamwork" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if ths.student.tskill == 0 or ths.student.tskill.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= ths.student.tskill %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="tskill" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if ths.student.documentation == 0 or ths.student.documentation.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= ths.student.documentation %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="documentation" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if ths.student.innovation == 0 or ths.student.innovation.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= ths.student.innovation %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="innovation" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if ths.student.efforts == 0 or ths.student.efforts.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= ths.student.efforts %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="efforts" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if ths.student.engproficiency == 0 or ths.student.engproficiency.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= ths.student.engproficiency %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="engproficiency" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if ths.student.total == 0 or ths.student.total.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= ths.student.total %></p>
+						<% end %>
+					</td>
+					<% if session[:user]["role"] == "2".to_i %>
+					<td style="background-color: white;color:black;">
+						
+						<input type="submit" name="submit" value="Save" class="btn btn-success">
+						
+					</td>
+					<% end %>
+					</tr>
+					<% end %>
+				<% end %>
+				</table>
+			</div>
+		<% end %>
+		<hr>
+		<div style="margin: 1% 2%; background-color: rgb(60,60,60,0.5);">
+			<h4 style="padding: 1%;color: lightblue;">Project Evaluation Scheme</h4>
+			<table class="table  table-collapse" style="background-color: #f2f2f2;">
+			<tr>
+				<th style="background-color:#EEE;color:black;">Logo</th>
+				<th style="background-color:#EEE;color:black;">Team Name</th>
+				<th style="background-color:#EEE;color:black;">Presentation Skill</th>
+				<th style="background-color:#EEE;color:black;">Team Work</th>
+				<th style="background-color:#EEE;color:black;">Technical Skill</th>
+				<th style="background-color:#EEE;color:black;">Documentation</th>
+				<th style="background-color:#EEE;color:black;">Innovation</th>
+				<th style="background-color:#EEE;color:black;">Efforts</th>
+				<th style="background-color:#EEE;color:black;">English Proficiency</th>
+				<th style="background-color:#EEE;color:black;">Total</th>
+				<% if session[:user]["role"] == "2".to_i %>
+				<th style="background-color:#EEE;color:black;">#</th>
+				<% end %>
+				<th style="background-color:#EEE;color:black;">View Members</th>
+			</tr>
+			<% @te.each do |te| %>
+				
+				<tr>
+					<%= form_tag("/teamevaluation/#{te.id}", method: "post") do %>
+					<td style="background-color: white;color:black;"><%= image_tag("#{te.team.logo}.JPG",style:"width:70px;") %></td>
+					<td style="background-color: white;color:black;"><%= te.team.name %></td>
+					<td style="background-color: white;color:black;">
+						<% if te.pskill == 0 or te.pskill.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= te.pskill %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="pskill" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if te.teamwork == 0 or te.teamwork.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= te.teamwork %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="teamwork" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if te.tskill == 0 or te.tskill.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= te.tskill %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="tskill" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if te.documentation == 0 or te.documentation.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= te.documentation %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="documentation" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if te.innovation == 0 or te.innovation.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= te.innovation %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="innovation" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if te.efforts == 0 or te.efforts.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= te.efforts %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="efforts" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if te.engproficiency == 0 or te.engproficiency.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= te.engproficiency %></p>
+						<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input type="text" name="engproficiency" class="form-control" >	<% end %>
+					</td>
+					<td style="background-color: white;color:black;">
+						<% if te.total == 0 or te.total.nil? %>  
+							<p style="text-align: center;">0</p> 
+						<% else %>
+							<p style="text-align: center;"><%= te.total %></p>
+						<% end %>
+					</td>
+					<% if session[:user]["role"] == "2".to_i %>
+					<td style="background-color: white;color:black;">
+						<input type="submit" name="submit" value="Save" class="btn btn-success">
+						
+					</td>
+					<% end %>
+					<% end %>
+					<td style="background-color: white;color:black;">
+						
+						<button onclick="viewmember(<%= te.team_id%>)" class="btn btn-info" ><span >Details</span></button>
+						
+					</td>
+				</tr>
+				
+			<% end %>
+			</table>
+
+		</div>
+		<hr>
+		
+<% else %>
+	<%= image_tag("logo.JPG",style:"",id:"logo1") %>
+	<%= image_tag("ucsylogo.png",style:"",id:"ucsylogo") %>
+     <div id="title" style="">
+     	<span style="opacity: 0;">UCSY Cyber Security and Digital Forensics, CSF <br> Project Marking System for Judges</span> 
+     </div>
+	<div id="signup">
+		<%= image_tag("logo.JPG",style:"",id:"logo2") %>
+			<%= form_tag("/signup", method: "post") do %>
+				<h3 style="color: white;">REGISTRATION</h3>
+				<hr>
+
+				<div class="form-group">
+				<input type="text" name="name" class="form-control" required="" placeholder="Name">
+				</div>
+				<div class="form-group">
+				<input type="text" name="email" class="form-control" required="" placeholder="Email">
+				</div>
+				<div class="form-group">
+				<input type="password" name="password" class="form-control" required="" placeholder="Password">
+				</div>
+				
+				<div class="form-group">
+				<input type="password" name="confirm_password" class="form-control" required="" placeholder="Confirm-Password">
+				</div>
+				<div class="form-group">
+					<button name="submit" class="btn btn-success form-control"><i class="fa fa-sign-out text-default" style="font-size: 24px;"></i>&nbspSIGN UP</button>
+				</div>
+			<% end %>
+		</div>
+<% end %>
+
+<!-- The Modal -->
+		<div class="modal fade" id="login">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        <div class="modal-header bg-warning">
+		          <h4 class="modal-title ">LOGIN</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <!-- Modal body -->
+		        <div class="modal-body">
+		          	<%= form_tag("/login", method: "post") do %>
+						
+						<div class="form-group">
+						<label>Email</label>
+						<input type="text" name="email" class="form-control">
+						</div>
+						<div class="form-group">
+						<label>Password</label>
+						<input type="password" name="password" class="form-control">
+						</div>	
+						<div class="form-group">
+						<input type="submit" name="submit" class="btn btn-warning form-control" value="LOGIN">
+						</div>
+					<% end %>
+		        </div>
+		        
+		        <!-- Modal footer -->
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		        </div>
+		        
+		      </div>
+		    </div>
+		</div>
+<script type="text/javascript">
+	
+	function viewmember(a){
+		for (var i = 1; i <=5; i++) {
+			document.getElementById(i).style.display = "none";
+		}
+		document.getElementById(a).style.display = "block";
+	}
+</script>
+</body>
+</html>

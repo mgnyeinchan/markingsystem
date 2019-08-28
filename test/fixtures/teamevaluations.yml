@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team_id: 1
+  pskill: 1
+  teamwork: 1
+  tskill: 1
+  documentation: 1
+  innovation: 1
+  efforts: 1
+  engproficiency: 1
+  total: 1
+
+two:
+  team_id: 1
+  pskill: 1
+  teamwork: 1
+  tskill: 1
+  documentation: 1
+  innovation: 1
+  efforts: 1
+  engproficiency: 1
+  total: 1

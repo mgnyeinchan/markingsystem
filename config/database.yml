@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: markingsystem_development
+  database: markingsystem
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: markingsystem_production
-  username: markingsystem
-  password: <%= ENV['MARKINGSYSTEM_DATABASE_PASSWORD'] %>
+  database: markingsystem
+  username: nyeinchan
+  password: 

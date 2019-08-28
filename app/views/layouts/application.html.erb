@@ -6,7 +6,102 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+  	body,html{
+		height: 100%;
+		padding: 0;
+		margin: 0;
+		background: url("images/bg1.jpg");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-attachment: fixed;
+		background-size: cover;
+	}
+	#title{
+		text-align: center;padding: 20px;font-size: 24px;color: red;background-color: rgb(240,240,240,0.4)
+	}
+	div#signup{
+
+		max-width: 500px;
+		background-color: rgb(60,60,60,0.4);
+		display: block;
+		margin: auto;
+		padding: 3%;
+
+		margin-top: 2%;
+		box-shadow: 4px 4px 15px black;
+
+	}
+	#ucsylogo{
+		width:100px;position:absolute;right:0;top:54px;z-index: 1;
+		height: 110px;
+	}
+	#logo1{
+		width:100px;border-radius:100%;position:absolute;left:10px;top:60px;
+	}
+	#logo2{
+		width:150px;border-radius:100%;display:block;margin:0 auto;
+		display: none;
+	}
+	.teammembersbox{
+		display: none;
+	}
+	@media only screen and (max-width: 600px) {
+		#title{
+			text-align: center;padding: 20px;font-size: 18px;color: red;background-color: rgb(240,240,240,0.4);
+			height: 110px;
+		}
+		#logo1{
+			display: block;
+		}
+		#logo2{
+			display: none;
+		}
+		div#signup{
+			max-width: 500px;
+			background-color: rgb(60,60,60,0.4);
+			display: block;
+			margin: auto;
+			padding: 3%;
+			margin: 5%;
+			box-shadow: 4px 4px 15px black;
+
+		}
+	}
+  </style>
   </head>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark" style="overflow: hidden;padding: 0;margin: 0;">
+  <!-- Brand -->
+  <% unless session[:user] %> 
+	    <a class="nav-link"  data-toggle="modal" data-target="#login" style="color:white;"><button class="btn btn-warning" style="float: right;">LOGIN</button></a><% else %>
+	      <a href="/logout" style="text-decoration: none;"><button class="btn btn-danger">LOGOUT</button>
+	      <% user = User.find_by(role:1) %>
+	      <% if user.nil? or session[:user]["role"] == "1".to_i %>
+	      <a href="/usermanagement" style="text-decoration: none;margin:0 5px;"><button class="btn btn-success">Adminstration</button>
+	      <% end %>
+		</a>
+	     <% end %><a class="navbar-brand" href="/" id="logo" style="color:teal;font-size: 16px;padding:0 10px;">Project Marking System for Judges <br><span style="font-size: 10px;line-height: 0.6"><i> UCSY 2nd Batch CSF</i><span></a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      	<li class="navli nav-item dropdown" id="usernav2"><a class="nav-link"></a></li>
+    </ul>
+  </div> 
+</nav>
+  
 
   <body>
     <%= yield %>
