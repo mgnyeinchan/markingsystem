@@ -38,7 +38,7 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
 
   #heroku
-  host = 'teamchatapp.herokuapp.com' # ここをコピペすると失敗します。自分の環境に合わせてください。
+  host = 'projectmarkingsystem.herokuapp.com' # ここをコピペすると失敗します。自分の環境に合わせてください。
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   config.active_record.verbose_query_logs = true
   
