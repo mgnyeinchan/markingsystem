@@ -85,8 +85,9 @@
 	      <% user = User.find_by(role:1) %>
 	      <% if user.nil? or session[:user]["role"] == "1".to_i %>
 	      <a href="/usermanagement" style="text-decoration: none;margin:0 5px;"><button class="btn btn-success">Adminstration</button>
-	      <a href="/results" style="text-decoration: none;margin:0 5px;"><button class="btn btn-info">Results</button>
+	      
 	      <% end %>
+	      <a href="/results" style="text-decoration: none;margin:0 5px;"><button class="btn btn-info">Results</button>
 		</a>
 	     <% end %><a class="navbar-brand" href="/" id="logo" style="color:teal;font-size: 16px;padding:0 10px;">Project Marking System for Judges <br><span style="font-size: 10px;line-height: 0.6"><i> UCSY 2nd Batch CSF</i><span></a>
 
