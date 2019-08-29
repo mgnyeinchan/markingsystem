@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   get "/canceladmin/:uid",to:"users#canceladmin"
 
   get "/delusr/:uid",to:"users#delusr"
+
+  get "/results",to:"homes#results"
 end
