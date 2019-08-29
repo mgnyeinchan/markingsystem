@@ -27,7 +27,9 @@
 						<th style="background-color:#EEE;color:black;">Innovation</th>
 						<th style="background-color:#EEE;color:black;">Efforts</th>
 						<th style="background-color:#EEE;color:black;">English Proficiency</th>
+						<!--
 						<th style="background-color:#EEE;color:black;">Total</th>
+						-->
 						<% if session[:user]["role"] == "2".to_i %>
 						<th style="background-color:#EEE;color:black;">#</th>
 						<% end %>
@@ -97,6 +99,7 @@
 						<% end %>
 					<% if session[:user]["role"] == "2".to_i %><input type="text" name="engproficiency" class="form-control" >	<% end %>
 					</td>
+					<!--
 					<td style="background-color: white;color:black;">
 						<% if ths.student.total == 0 or ths.student.total.nil? %>  
 							<p style="text-align: center;">0</p> 
@@ -104,6 +107,7 @@
 							<p style="text-align: center;"><%= ths.student.total %></p>
 						<% end %>
 					</td>
+					-->
 					<% if session[:user]["role"] == "2".to_i %>
 					<td style="background-color: white;color:black;">
 						
@@ -131,7 +135,9 @@
 				<th style="background-color:#EEE;color:black;">Innovation</th>
 				<th style="background-color:#EEE;color:black;">Efforts</th>
 				<th style="background-color:#EEE;color:black;">English Proficiency</th>
+				<!--
 				<th style="background-color:#EEE;color:black;">Total</th>
+				-->
 				<% if session[:user]["role"] == "2".to_i %>
 				<th style="background-color:#EEE;color:black;">#</th>
 				<% end %>
@@ -199,6 +205,7 @@
 						<% end %>
 					<% if session[:user]["role"] == "2".to_i %><input type="text" name="engproficiency" class="form-control" >	<% end %>
 					</td>
+					<!--
 					<td style="background-color: white;color:black;">
 						<% if te.total == 0 or te.total.nil? %>  
 							<p style="text-align: center;">0</p> 
@@ -206,6 +213,7 @@
 							<p style="text-align: center;"><%= te.total %></p>
 						<% end %>
 					</td>
+					-->
 					<% if session[:user]["role"] == "2".to_i %>
 					<td style="background-color: white;color:black;">
 						<input type="submit" name="submit" value="Save" class="btn btn-success">
