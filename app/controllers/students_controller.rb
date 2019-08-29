@@ -10,7 +10,7 @@ class StudentsController < ApplicationController
 		student.engproficiency = student.engproficiency.to_i + params[:engproficiency].to_i 
 		student.total = student.pskill.to_i + student.teamwork.to_i + student.tskill.to_i + student.documentation.to_i + student.innovation.to_i + student.efforts.to_i + student.engproficiency.to_i
 		if student.save()
-			redirect_to "/#{params[:teamid]}"
+			redirect_to "/team_#{params[:teamid]}"
 		end
 	end
 end
