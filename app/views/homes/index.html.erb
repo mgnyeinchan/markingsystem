@@ -12,6 +12,7 @@
 		<div class="alert alert-info"><%=  flash[:donotmatch] %></div>
 		<% end %>
 <% if session[:user] %>
+		<input type="hidden" name="" id="teamid" value="<%= params[:teamid] %>">
 		<% @teams.each do |team| %>
 			<div style="margin: 2%; background-color: white;" id="<%=team.id %>" class="teammembersbox">
 				<h4 style="padding: 1%;"><%= image_tag("#{team.logo}.JPG",style:"width:70px;") %><%= team.name %></h4>
@@ -38,6 +39,7 @@
 				<% teamhasstudent = Teamhasstudent.where(:team_id => team.id) %>
 				<% teamhasstudent.each do |ths| %>
 					<% no += 1 %>
+					
 					<%= form_tag("/individualevaluation/#{ths.student.id}/#{team.id}", method: "post") do %>
 					<tr>
 					<td style="background-color: white;color:black;"><%= no %></td>
@@ -49,7 +51,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= ths.student.pskill %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="pskill" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="pskill" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if ths.student.teamwork == 0 or ths.student.teamwork.nil? %>  
@@ -57,7 +59,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= ths.student.teamwork %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="teamwork" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="teamwork" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if ths.student.tskill == 0 or ths.student.tskill.nil? %>  
@@ -65,7 +67,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= ths.student.tskill %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="tskill" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="tskill" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if ths.student.documentation == 0 or ths.student.documentation.nil? %>  
@@ -73,7 +75,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= ths.student.documentation %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="documentation" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="documentation" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if ths.student.innovation == 0 or ths.student.innovation.nil? %>  
@@ -81,7 +83,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= ths.student.innovation %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="innovation" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="innovation" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if ths.student.efforts == 0 or ths.student.efforts.nil? %>  
@@ -89,7 +91,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= ths.student.efforts %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="efforts" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="efforts" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if ths.student.engproficiency == 0 or ths.student.engproficiency.nil? %>  
@@ -97,7 +99,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= ths.student.engproficiency %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="engproficiency" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="engproficiency" class="form-control" >	<% end %>
 					</td>
 					<!--
 					<td style="background-color: white;color:black;">
@@ -155,7 +157,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= te.pskill %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="pskill" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="pskill" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if te.teamwork == 0 or te.teamwork.nil? %>  
@@ -163,7 +165,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= te.teamwork %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="teamwork" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="teamwork" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if te.tskill == 0 or te.tskill.nil? %>  
@@ -171,7 +173,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= te.tskill %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="tskill" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="tskill" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if te.documentation == 0 or te.documentation.nil? %>  
@@ -179,7 +181,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= te.documentation %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="documentation" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="documentation" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if te.innovation == 0 or te.innovation.nil? %>  
@@ -187,7 +189,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= te.innovation %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="innovation" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="innovation" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if te.efforts == 0 or te.efforts.nil? %>  
@@ -195,7 +197,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= te.efforts %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="efforts" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="efforts" class="form-control" >	<% end %>
 					</td>
 					<td style="background-color: white;color:black;">
 						<% if te.engproficiency == 0 or te.engproficiency.nil? %>  
@@ -203,7 +205,7 @@
 						<% else %>
 							<p style="text-align: center;"><%= te.engproficiency %></p>
 						<% end %>
-					<% if session[:user]["role"] == "2".to_i %><input type="text" name="engproficiency" class="form-control" >	<% end %>
+					<% if session[:user]["role"] == "2".to_i %><input maxlength="1" type="text" name="engproficiency" class="form-control" >	<% end %>
 					</td>
 					<!--
 					<td style="background-color: white;color:black;">
@@ -307,6 +309,8 @@
 		</div>
 <script type="text/javascript">
 	
+	var tid = document.getElementById('teamid').value;
+	document.getElementById(tid).style.display = "block";
 	function viewmember(a){
 		for (var i = 1; i <=5; i++) {
 			document.getElementById(i).style.display = "none";
@@ -315,6 +319,7 @@
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop =0;
 	}
+
 </script>
 </body>
 </html>
